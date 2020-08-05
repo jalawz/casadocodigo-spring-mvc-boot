@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Livros</title>
+</head>
+<body>
+    <h1 th:if="${sucesso != null}" th:text="${sucesso}"></h1>
+    <table>
+        <tr>
+            <td>Titulo</td>
+            <td>Valores</td>
+        </tr>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.title}"></td>
+            <td th:each="price : ${product.prices}" th:text="'[' + ${price.value} + ' - ' + ${price.bookType} + ']'"></td>
+        </tr>
+    </table>
+</body>
+</html>

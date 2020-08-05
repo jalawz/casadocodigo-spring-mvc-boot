@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de produtos</title>
+</head>
+<body>
+    <form action="/produtos" method="post">
+        <div>
+            <label for="title">Titulo</label>
+            <input type="text" name="title" id="title">
+        </div>
+        <div>
+            <label for="description">Descricao</label>
+            <textarea name="description" id="description" cols="20" rows="10"></textarea>
+        </div>
+        <div>
+            <label for="pages">Numero de paginas</label>
+            <input type="text" name="pages" id="pages">
+        </div>
+
+        <th:block th:each="type,i : ${types}">
+            <div>
+                <label th:for="'price_' + ${type}" th:text="${type}"></label>
+                <input type="text" th:name="'prices[' + ${i.index} + '].value'" th:id="'price_' + ${type}">
+                <input type="hidden" th:name="'prices[' + ${i.index} + '].bookType'" th:value="${type}">
+            </div>
+        </th:block>
+
+        <div>
+            <input type="submit" value="Enviar">
+        </div>
+    </form>
+</body>
+</html>
